@@ -1,3 +1,0 @@
-{
-    "presets": ["@babel/preset-env"] // env preset을 선택한다.
-}
