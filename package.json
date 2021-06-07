@@ -29,6 +29,6 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   }
 }
