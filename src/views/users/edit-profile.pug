@@ -3,19 +3,23 @@ extends ../base
 block content
     if(errorMessage)
         span=errorMessage
-    form(method="POST")
+    img(src=`/${loggedInUser.avatarUrl}`, width="100px", height="100px")
+    form(method="POST", enctype="multipart/form-data")
         label(for="username")
             span Username (ID)
-        input(name="username", type="text", placeholder="Username", value=loggedInUser.username, required)
+        input(id="username", name="username", type="text", placeholder="Username", value=loggedInUser.username, required)
         label(for="name")
             span Name
-        input(name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
+        input(id="name", name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
         label(for="email")
             span Email
-        input(name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
+        input(id="email", name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
         label(for="location")
             span Location
-        input(name="location", type="text", placeholder="Location", value=loggedInUser.location, required)
+        input(id="location", name="location", type="text", placeholder="Location", value=loggedInUser.location, required)
+        label(for="avatar")
+            span Avatar
+        input(id="avatar", name="avatar", type="file", accept="image/*")
         input(type="submit", value="Update Profile")
     if(!loggedInUser.socialOnly)
         hr
