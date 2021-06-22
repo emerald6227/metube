@@ -271,6 +271,85 @@ input[type=submit],
   color: azure;
 }
 
+#videoContainer {
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#videoContainer video {
+  width: 100%;
+  height: 70vh;
+}
+#videoContainer #videoControls {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0px;
+}
+#videoContainer #videoControls.showing {
+  opacity: 1;
+}
+#videoContainer #videoControls #videoDuration {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  height: 8px;
+}
+#videoContainer #videoControls #videoDuration #timeline {
+  width: 100%;
+}
+#videoContainer #videoControls #videoFunctions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  height: 100px;
+}
+#videoContainer #videoControls #videoFunctions button {
+  all: unset;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#videoContainer #videoControls #videoFunctions button i {
+  font-size: 25px;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-left {
+  display: flex;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-left button:first-child {
+  margin: 0 20px;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-left button {
+  margin-right: 20px;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-left #volume {
+  margin-right: 20px;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-left #timetable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-right {
+  display: flex;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-right button {
+  margin-right: 20px;
+  transition: hover 0.2s ease;
+}
+#videoContainer #videoControls #videoFunctions #videoFunctions-right button i:hover {
+  font-size: 30px;
+}
+
 .video_grid {
   display: grid;
   gap: 50px;
