@@ -21,20 +21,26 @@ block content
                     button#fullScreen
                         i.fas.fa-expand
 
+    div
+        p=video.hashtags
+        h3=video.title
+        small=video.createdAt
+        p=video.description
+    div 
+        h3 uploaded by 
+            a(href=`/users/${video.owner._id}`) #{video.owner.name}
+    if String(loggedInUser._id) === String(video.owner._id)
+        br
+        a(href=`${video.id}/edit`) Edit video &larr;
+        br
+        a(href=`${video.id}/delete`) Delete video &larr;
 
-    //- div
-    //-     p=video.hashtags
-    //-     h3=video.title
-    //-     small=video.createdAt
-    //-     p=video.description
-    //- div 
-    //-     h3 uploaded by 
-    //-         a(href=`/users/${video.owner._id}`) #{video.owner.name}
-    //- if String(loggedInUser._id) === String(video.owner._id)
-    //-     br
-    //-     a(href=`${video.id}/edit`) Edit video &larr;
-    //-     br
-    //-     a(href=`${video.id}/delete`) Delete video &larr;
+    if loggedInUser
+        div.video__comments   
+            form.video__comment-form#commentForm
+                textarea(cols="50", rows="5", placeholder="Write comment")
+                button Add Comment
 
 block scripts
     script(src="/static/js/videoPlayer.js")
+    script(src="/static/js/commentSection.js")
