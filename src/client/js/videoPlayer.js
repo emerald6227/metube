@@ -14,6 +14,11 @@ const fullScreenBtnIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
+// Comment
+const commentForm = document.getElementById("commentForm");
+const textarea = commentForm.querySelector("textarea");
+let textFocusState = false;
+
 let controlsLeaveTimeout = null;
 let controlsMovementTimeout = null;
 let volumeValue = 1;
@@ -22,11 +27,15 @@ video.volume = volumeValue;
 const keyDownEvent = window.onkeydown = (event) => {
     const { code } = event;
 
-    if (code === "KeyF") {
-        handleFullScreen();
-    } else if (code === "Space") {
-        handlePlayClick();
+    if (!textFocusState) {
+        if (code === "KeyF") {
+            handleFullScreen();
+        } else if (code === "Space") {
+            event.preventDefault();
+            handlePlayClick();
+        }
     }
+    
 };
 
 const formatTime = (seconds) =>
@@ -152,3 +161,9 @@ video.addEventListener("ended", handleVideoEnded);
 
 videoControls.addEventListener("mouseover", handleControlsMouseOver);
 videoControls.addEventListener("mouseleave", handleControlsMouseLeave);
+
+// Comment
+if (textarea) {
+    textarea.addEventListener("focus", () => { textFocusState = true });
+    textarea.addEventListener("blur", () => { textFocusState = false });
+}
