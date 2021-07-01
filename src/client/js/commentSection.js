@@ -2,11 +2,13 @@ import fetch from 'node-fetch';
 
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const deleteCommentBtns = document.querySelectorAll(".deleteCommentBtn");
 
-const addComment = (text) => {
+const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
     const newComment = document.createElement("li");
     newComment.className = "video__comment";
+    newComment.dataset.id = id;
 
     const icon = document.createElement("i");
     icon.className = "fas fa-comment";
@@ -14,8 +16,13 @@ const addComment = (text) => {
     const span = document.createElement("span");
     span.innerText = `${text}`;
 
+    const deleteBtn = document.createElement("i");
+    deleteBtn.className = "fas fa-times";
+    deleteBtn.addEventListener("click", handleDeleteComment);
+
     newComment.appendChild(icon);
     newComment.appendChild(span);
+    newComment.appendChild(deleteBtn);
     videoComments.prepend(newComment);
 };
 
@@ -37,13 +44,31 @@ const handleSubmitComment = async (event) => {
         body: JSON.stringify({ text })
     });
 
-    textarea.value = "";
-
+    
     if (response.status === 201) {
-        addComment(text);
+        textarea.value = "";
+        const { newCommentId } = await response.json();
+        addComment(text, newCommentId);
+    }
+};
+
+const handleDeleteComment = async (event) => {
+    const comment = event.target.parentElement;
+    const commentId = comment.dataset.id;
+
+    const response = await fetch(`/api/videos/${commentId}/comment`, {
+        method: "DELETE"
+    });
+
+    if (response.status === 200) {
+        comment.remove();
     }
 };
 
 if (form) {
     form.addEventListener("submit", handleSubmitComment);
 };
+
+for (const deleteBtn of deleteCommentBtns) {
+    deleteBtn.addEventListener("click", handleDeleteComment);
+}
