@@ -5,8 +5,8 @@ const form = document.getElementById("commentForm");
 const deleteCommentBtns = document.querySelectorAll(".deleteCommentBtn");
 
 const addComment = (text, id) => {
-    const videoComments = document.querySelector(".video__comments ul");
-    const newComment = document.createElement("li");
+    const videoComments = document.querySelector(".video__comments");
+    const newComment = document.createElement("div");
     newComment.className = "video__comment";
     newComment.dataset.id = id;
 

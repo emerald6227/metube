@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import User from './User';
+import Comment from './Comment';
 
 const videoSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true, maxLength: 80 },
@@ -17,6 +19,28 @@ const videoSchema = new mongoose.Schema({
 
 videoSchema.static("formatHashtags", function(hashtags) {
     return hashtags.split(",").map(word => word.startsWith("#") ? word: `#${word}`);
+});
+
+videoSchema.pre("findOneAndDelete", async function(next) {
+    const videoId = this._conditions._id;
+
+    // delete cascade 
+    const userVideoDelete = await User.findOneAndUpdate({ videos: videoId }, { $pull: { videos: videoId } });
+    
+    const commentObjList = await Comment.find({ video: videoId });
+    let commentIdList = [];
+    for (const commentObj of commentObjList) {
+        commentIdList.push(String(commentObj._id));
+    }
+
+    const userCommentDelete = await User.updateMany(
+        {},
+        { $pull: { comments: { $in: commentIdList }}}
+    );
+
+    const commentDelete = await Comment.deleteMany({ video: videoId });
+
+    next();
 });
 
 const Video = mongoose.model("Video", videoSchema);
