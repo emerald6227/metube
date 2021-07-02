@@ -232,3 +232,14 @@ export const seeProfile = async (req, res) => {
 
     return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , user });
 };
+
+// user Delete
+export const getDelete = async (req, res) => {
+    const user = req.session.user;
+
+    await User.findByIdAndDelete(user._id);
+    req.flash("info", "Account delete complete");
+    req.session.destroy();
+
+    return res.redirect("/");
+};
