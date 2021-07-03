@@ -54,21 +54,21 @@ const deleteUserVideoCascade = async (userId) => {
 };
 
 const otherUserVideoCascade = async (userId) => {
-    // 4. 탈퇴 유저와 연관된 모든 comments를 삭제한다.
+    // 1. 탈퇴 유저와 연관된 모든 comments를 삭제한다.
     await Comment.deleteMany({ owner: userId });
 
-    // 5. 해당 유저의 모든 video를 삭제한다.
+    // 2. 해당 유저의 모든 video를 삭제한다.
     await Video.deleteMany({ owner: userId });
 
     // 다른 유저의 비디오에 있는 탈퇴유저의 comment 삭제 필요
-    // 1. 탈퇴유저의 모든 comments id를 가져와서 list로 만든다.
+    // 3. 탈퇴유저의 모든 comments id를 가져와서 list로 만든다.
     const deleteUser = await User.findById(userId);
     let deleteUserCommentIdList = [];
     for (const deleteUserCommentId of deleteUser.comments) {
         deleteUserCommentIdList.push(String(deleteUserCommentId));
     }
 
-    // 2. Video Obj에서 해당 comments id 와 일치하는 데이터들을 삭제 및 업데이트
+    // 4. Video Obj에서 해당 comments id 와 일치하는 데이터들을 삭제 및 업데이트
     await Video.updateMany(
         {},
         { $pull: { comments: { $in: deleteUserCommentIdList }}}

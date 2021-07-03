@@ -16,7 +16,6 @@
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
-    "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
@@ -31,9 +30,11 @@
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
     "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
+    "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
     "mini-css-extract-plugin": "^1.6.0",
     "nodemon": "^2.0.7",
@@ -44,7 +45,11 @@
     "webpack-cli": "^4.7.2"
   },
   "scripts": {
+    "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:assets": "webpack"
+    "dev:assets": "webpack --mode=development"
   }
 }

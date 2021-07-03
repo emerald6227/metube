@@ -1,4 +1,5 @@
 // require("dotenv").config();
+import "regenerator-runtime";
 import "dotenv/config";
 import "./db";
 import "./models/Video";
