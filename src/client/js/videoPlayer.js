@@ -76,10 +76,8 @@ const handleVolumeChange = (event) => {
 }
 
 const handleLoadedMetadata = () => {
-    console.log("video.duration: ", formatTime(Math.floor(video.duration)));
     totalTime.innerText = formatTime(Math.floor(video.duration));
     timeLine.max = Math.floor(video.duration);
-    console.log("totalTime: ", totalTime.innerText)
 };
 
 const handleTimeUpdate = () => {
@@ -156,6 +154,7 @@ timeLine.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("click", handlePlayClick);
 video.addEventListener("mousemove", handleVideoMouseMove);
