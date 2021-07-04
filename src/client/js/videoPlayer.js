@@ -76,8 +76,10 @@ const handleVolumeChange = (event) => {
 }
 
 const handleLoadedMetadata = () => {
+    console.log("video.duration: ", formatTime(Math.floor(video.duration)));
     totalTime.innerText = formatTime(Math.floor(video.duration));
     timeLine.max = Math.floor(video.duration);
+    console.log("totalTime: ", totalTime.innerText)
 };
 
 const handleTimeUpdate = () => {
