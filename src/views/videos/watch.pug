@@ -2,7 +2,10 @@ extends ../base.pug
 
 block content
     div#videoContainer(data-id=video._id)
-        video(src=`${video.fileUrl}`)#video
+        if isHeroku
+            video(src=`${video.fileUrl}`)#video
+        else
+            video(src=`/${video.fileUrl}`)#video
         div#videoControls
             div#videoDuration
                 input(type="range", min="0", step="1", value="0")#timeline

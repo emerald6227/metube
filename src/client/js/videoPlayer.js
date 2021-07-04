@@ -1,5 +1,3 @@
-const { default: fetch } = require('node-fetch');
-
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
 const playBtnIcon = playBtn.querySelector("i");
