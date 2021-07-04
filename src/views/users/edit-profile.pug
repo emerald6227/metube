@@ -5,7 +5,7 @@ block content
         span=errorMessage
     form(method="POST", enctype="multipart/form-data").edit-profile__form
         label(for="username") Username (ID)
-        input(id="username", name="username", type="text", placeholder="Username", value=loggedInUser.username, required)
+        input(id="username", name="username", type="text", placeholder="ID", value=loggedInUser.username, required)
         label(for="name") Name
         input(id="name", name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
         label(for="email") Email
