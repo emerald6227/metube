@@ -14,7 +14,10 @@ const videoControls = document.getElementById("videoControls");
 
 // Comment
 const commentForm = document.getElementById("commentForm");
-const textarea = commentForm.querySelector("textarea");
+let textarea = "";
+if (commentForm) {
+    textarea = commentForm.querySelector("textarea");
+}
 let textFocusState = false;
 
 let controlsLeaveTimeout = null;
