@@ -80,6 +80,8 @@ const handleLoadedMetadata = () => {
     timeLine.max = Math.floor(video.duration);
 };
 
+setInterval(handleLoadedMetadata, 1000);
+
 const handleTimeUpdate = () => {
     currentTime.innerText = formatTime(Math.floor(video.currentTime));
     timeLine.value = Math.floor(video.currentTime);
@@ -154,8 +156,6 @@ timeLine.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
-video.addEventListener("durationchange", handleLoadedMetadata);
-video.addEventListener("canplay", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("click", handlePlayClick);
 video.addEventListener("mousemove", handleVideoMouseMove);
