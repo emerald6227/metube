@@ -55,7 +55,7 @@ export const postLogin = async (req, res) => {
 export const startGithubLogin = (req, res) => {
     const baseUrl = `https://github.com/login/oauth/authorize`;
     const config = {
-        client_id: process.env.GH_CLIENT,
+        client_id: process.env.GH_CLIENT || process.env.GH_CLIENT_TEST,
         scope: "read:user user:email"
     }
 
@@ -67,8 +67,8 @@ export const startGithubLogin = (req, res) => {
 export const finishGithubLogin = async (req, res) => {
     const baseUrl = "https://github.com/login/oauth/access_token";
     const config = {
-        client_id: process.env.GH_CLIENT,
-        client_secret: process.env.GH_SECRET,
+        client_id: process.env.GH_CLIENT || process.env.GH_CLIENT_TEST,
+        client_secret: process.env.GH_SECRET || process.env.GH_SECRET_TEST,
         code: req.query.code
     }
 
