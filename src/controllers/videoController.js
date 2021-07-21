@@ -13,12 +13,17 @@ export const home = async (req, res, next) => {
 
 export const watch = async (req, res) => {
     const { id } = req.params;
-    const video = await Video.findById(id).populate("owner").populate("comments");
+    const video = await Video.findById(id).populate("owner").populate({
+        path: 'comments', 
+        populate : "owner"
+    });
+
+    const recommendedVideos = await Video.find({}).sort({createdAt: 'desc'}).populate("owner").limit(20);
 
     if (!video) {
         return res.status(404).render("404", { pageTitle: "Video not found." });
     }
-    return res.render("videos/watch", { pageTitle: video.title, video });
+    return res.render("videos/watch", { pageTitle: video.title, video, recommendedVideos });
 }
 
 // edit video
@@ -140,6 +145,8 @@ export const createComment = async (req, res) => {
         session: { user }
     } = req;
 
+    const isHeroku = process.env.NODE_ENV === "production";
+
     const video = await Video.findById(id);
 
     if (!video) {
@@ -164,13 +171,13 @@ export const createComment = async (req, res) => {
     userObj.save();
 
     // return res.sendStatus(201);
-    return res.status(201).json({ newCommentId: comment._id });
+    return res.status(201).json({ newCommentId: comment._id, commentCreatedAt: comment.createdAt , ownerId: user._id, ownerName: user.name, avatarUrl: user.avatarUrl, isHeroku });
 }
 
 export const deleteComment = async (req, res) => {
     const { id } = req.params;
     const userId = req.session.user._id;
-    
+
     const comment = await Comment.findById(id);
 
     if (!comment) {

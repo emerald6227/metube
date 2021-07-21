@@ -1,13 +1,17 @@
 #videoContainer {
   position: relative;
-  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 56.25%; // 16:9
+  // padding-bottom: 75%; // 4:3
 
   video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 70vh;
+    height: 100%;
   }
 
   #videoControls {
@@ -33,6 +37,7 @@
 
       #timeline {
         width: 100%;
+        outline: none !important;
       }
     }
 

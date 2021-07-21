@@ -1,8 +1,10 @@
 .video-mixin {
   .video-mixin__thumb {
-    height: 140px;
+    height: 160px;
+    max-height: 160px;
     border-radius: 7px;
     width: 100%;
+    max-width: 300px;
     background-color: ivory;
   }
 

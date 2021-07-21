@@ -1,0 +1,40 @@
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.875rem;
+  height: 2.5rem;
+  border: 0.0625rem solid #3ea6ff;
+  border-radius: 0.1875rem;
+  margin-top: 0.625rem;
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 0.625rem;
+    color: #3ea6ff;
+  }
+
+  span {
+    color: #3ea6ff;
+  }
+}
+
+.login-box__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.25rem;
+  height: 2.5rem;
+  border: 0.0625rem solid #3ea6ff;
+  border-radius: 0.1875rem;
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 0.625rem;
+    color: #3ea6ff;
+  }
+
+  span {
+    color: #3ea6ff;
+  }
+}

@@ -1,6 +1,10 @@
 header
-    a(href="/").header__logo
-        i.fab.fa-youtube
+    div#logo-box
+        button#button__nav
+            i.fas.fa-bars
+        a(href="/").header__logo
+            i.fab.fa-youtube
+            span RavenTube
     nav 
         ul 
             li
@@ -8,11 +12,11 @@ header
                     i.fas.fa-search
             if loggedIn
                 li 
-                    a(href="/videos/upload") Upload Video
+                    a(href="/videos/upload") 동영상 업로드
                 li 
-                    a(href="/users/edit") Edit Profile
+                    a(href="/users/edit") 프로필 수정
                 li
-                    a(href="/users/logout") Logout
+                    a(href="/users/logout") 로그아웃
                 li 
                     a(href=`/users/${loggedInUser._id}`)
                         if(loggedInUser.avatarUrl === "")
@@ -25,6 +29,9 @@ header
                                     img.header__avatar(src=`/${loggedInUser.avatarUrl}`)
             else
                 li 
-                    a(href="/login") Login
+                    a(href="/join").header__btn 회원가입
                 li 
-                    a(href="/join").header__btn Join
+                    //- a(href="/login") Login
+                    a.login-box__header(href="/login")
+                        i.fas.fa-user-circle
+                        span 로그인

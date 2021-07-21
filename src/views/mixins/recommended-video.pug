@@ -1,0 +1,16 @@
+mixin recommended-video(video)
+    div.recommended-video
+        a(href=`/videos/${video.id}`)
+            div.recommended-video__primary
+                div.recommended-video__wrapper
+                    if isHeroku
+                        video(src=`${video.fileUrl}`, poster=`${video.thumbUrl}`, muted="muted", preload="metadata").preview-video
+                    else
+                        video(src=`/${video.fileUrl}`, poster=`/${video.thumbUrl}` muted="muted", preload="metadata").preview-video
+                    span.recommended-video__time 00:00:00
+            div.recommended-video__secondary
+                div.recommended-video__title
+                    span=video.title
+                div.recommended-video__info
+                    span=video.owner.name
+                    span 조회수 #{video.meta.views}회

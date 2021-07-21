@@ -1,16 +1,14 @@
-.edit-profile__form {
-  label {
-    font-size: 14px;
-    margin: 10px 0;
-    display: block;
-  }
-}
-
-.edit-profile__password {
+.edit-profile__option {
   margin-top: 50px;
   text-align: center;
 
   a {
+    display: block;
     text-decoration: underline;
+    margin-bottom: 10px;
+  }
+
+  a:nth-child(2) {
+    color: $youtubeRed;
   }
 }

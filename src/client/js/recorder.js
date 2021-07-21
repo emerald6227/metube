@@ -1,7 +1,8 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
+const recordVideoBox = document.querySelector(".record__video");
 const actionBtn = document.getElementById("actionBtn");
-const video = document.getElementById("preview");
+let video = document.getElementById("preview");
 
 let stream;
 let recorder;
@@ -23,7 +24,7 @@ const downloadFile = (fileUrl, fileName) => {
 
 const handleDownload = async () => {
     actionBtn.removeEventListener("click", handleDownload);
-    actionBtn.innerText = "Transcoding...";
+    actionBtn.innerText = "변환중...";
     actionBtn.disabled = true;
 
     const ffmpeg = createFFmpeg({ log: true });
@@ -55,20 +56,31 @@ const handleDownload = async () => {
     URL.revokeObjectURL(videoFile);
 
     actionBtn.disabled = false;
-    actionBtn.innerText = "Record again";
+    actionBtn.innerText = "동영상 다시 녹화하기";
     actionBtn.addEventListener("click", handleStart);
+    init();
 };
 
 const handleStop = () => {
-    actionBtn.innerText = "Download Recording";
+    actionBtn.innerText = "동영상 다운로드";
     actionBtn.removeEventListener("click", handleStop);
     actionBtn.addEventListener("click", handleDownload);
 
     recorder.stop();
 };
 
-const handleStart = () => {
-    actionBtn.innerText = "Stop Recording";
+const handleStart = async () => {
+    if (video !== null) {
+        recordVideoBox.removeChild(video);
+    }
+    const videoObj = document.createElement("video")
+    videoObj.id = "preview";
+    videoObj.width = 1024;
+    videoObj.height = 576;
+    video = videoObj;
+    recordVideoBox.insertBefore(videoObj, actionBtn);
+    await init();
+    actionBtn.innerText = "동영상 녹화 중지";
     actionBtn.removeEventListener("click", handleStart);
     actionBtn.addEventListener("click", handleStop);
 
@@ -96,6 +108,6 @@ const init = async () => {
     video.play();
 };
 
-init();
+// init();
 
 actionBtn.addEventListener("click", handleStart);

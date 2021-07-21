@@ -13,10 +13,10 @@ const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
 // Comment
-const commentForm = document.getElementById("commentForm");
+const addCommentForm = document.querySelector(".video__add-comment--form");
 let textarea = "";
-if (commentForm) {
-    textarea = commentForm.querySelector("textarea");
+if (addCommentForm) {
+    textarea = addCommentForm.querySelector("input");
 }
 let textFocusState = false;
 
@@ -97,10 +97,8 @@ const handleFullScreen = (event) => {
 
     if (fullScreen) {
         document.exitFullscreen();
-        video.style.height = "70vh";
     } else {
         videoContainer.requestFullscreen();
-        video.style.height = "100vh";
     }
     fullScreenBtnIcon.classList = fullScreen ? "fas fa-expand" : "fas fa-compress";
 };

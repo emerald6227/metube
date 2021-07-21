@@ -1,0 +1,63 @@
+div#nav-box
+    div.nav-menu
+        div.nav-menu__item
+            i.fas.fa-home
+            span 홈
+        div.nav-menu__item
+            i.fas.fa-compass
+            span 탐색
+        div.nav-menu__item
+            i.fab.fa-youtube-square
+            span 구독
+    div.nav-menu
+        div.nav-menu__item
+            i.fas.fa-toolbox
+            span 보관함
+        div.nav-menu__item
+            i.fas.fa-history
+            span 시청기록
+    if !loggedIn
+        div.nav-menu__login
+            span 로그인하면 동영상에 댓글을 달고 반응할 수 있습니다.
+            a.login-box(href="/login")
+                i.fas.fa-user-circle
+                span 로그인
+    div.nav-menu
+        span.nav-menu__title 인기 RavenTube
+        div.nav-menu__item
+            i.fas.fa-music
+            span 음악
+        div.nav-menu__item
+            i.fas.fa-trophy
+            span 스포츠
+        div.nav-menu__item
+            i.fas.fa-gamepad
+            span 게임
+        div.nav-menu__item
+            i.fas.fa-film
+            span 영화
+        div.nav-menu__item
+            i.fas.fa-newspaper
+            span 뉴스
+        div.nav-menu__item
+            i.fab.fa-chromecast
+            span 실시간
+        div.nav-menu__item
+            i.fas.fa-lightbulb
+            span 학습
+        div.nav-menu__item
+            i.fas.fa-vr-cardboard
+            span 360º 동영상
+    div.nav-menu
+        div.nav-menu__item
+            i.fas.fa-cog
+            span 설정
+        div.nav-menu__item
+            i.fas.fa-flag
+            span 신고 기록
+        div.nav-menu__item
+            i.fas.fa-question-circle
+            span 고객센터
+        div.nav-menu__item
+            i.fas.fa-exclamation-circle
+            span 의견 보내기

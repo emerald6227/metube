@@ -1,23 +1,21 @@
 extends ../base
 
 block content
-    if(errorMessage)
-        span=errorMessage
-    form(method="POST", enctype="multipart/form-data").edit-profile__form
-        label(for="username") Username (ID)
-        input(id="username", name="username", type="text", placeholder="ID", value=loggedInUser.username, required)
-        label(for="name") Name
-        input(id="name", name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
-        label(for="email") Email
-        input(id="email", name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
-        label(for="location") Location
-        input(id="location", name="location", type="text", placeholder="Location", value=loggedInUser.location, required)
-        label(for="avatar") Avatar
-        input(id="avatar", name="avatar", type="file", accept="image/*")
-        input(type="submit", value="Update Profile")
-    if(!loggedInUser.socialOnly)
-        div.edit-profile__password
-            a(href="change-password") Change Password
-
-    div 
-        a(href="/users/delete") Delete your account
+    div.default__container
+        h3 프로필 수정
+        if(errorMessage)
+            span=errorMessage
+        form(method="POST", enctype="multipart/form-data")
+            label(for="name") 이름
+            input(id="name", name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
+            label(for="email") 이메일
+            input(id="email", name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
+            label(for="location") 지역
+            input(id="location", name="location", type="text", placeholder="Location", value=loggedInUser.location, required)
+            label(for="avatar") 아바타
+            input(id="avatar", name="avatar", type="file", accept="image/*")
+            input(type="submit", value="프로필 수정")
+        div.edit-profile__option
+            if(!loggedInUser.socialOnly)
+                a(href="change-password") 비밀번호 변경
+            a(href="/users/delete") 회원탈퇴

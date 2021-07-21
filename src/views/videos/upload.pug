@@ -1,24 +1,28 @@
 extends ../base.pug
 
 block content
-    div.upload__container
-        div.upload__video
-            video#preview
-            button#actionBtn Start Recording
-        if errorMessage
-            span=errorMessage
-        form(method="POST", enctype="multipart/form-data")
-            label(for="title") Title
-            input(id="title", name="title", placeholder="title", required, type="text", maxlength="80")
-            label(for="description") Description
-            input(id="description", name="description", placeholder="Description", required, type="text", minlength="2")
-            label(for="hastags") Hashtags
-            input(id="hastags", name="hashtags", placeholder="Hashtags, separated by comma.", required, type="text")
-            label(for="video") Video File
-            input(id="video", name="video", type="file", accept="video/*", required)
-            label(for="thumb") Thumbnail File
-            input(id="thumb", name="thumb", type="file", accept="image/*", required)
-            input(type="submit", value="Upload Video")
+    div.default__container
+        div.upload__container
+            div.record__video
+                h3 동영상 녹화
+                //- video#preview
+                button#actionBtn 동영상 녹화 시작
+            div.upload__video
+                h3 동영상 업로드
+                if errorMessage
+                    span=errorMessage
+                form(method="POST", enctype="multipart/form-data")
+                    label(for="title") 제목
+                    input(id="title", name="title", placeholder="title", required, type="text", maxlength="80")
+                    label(for="description") 설명
+                    input(id="description", name="description", placeholder="Description", required, type="text", minlength="2")
+                    label(for="hastags") 해시태그
+                    input(id="hastags", name="hashtags", placeholder="Hashtags, separated by comma.", required, type="text")
+                    label(for="video") 동영상 선택
+                    input(id="video", name="video", type="file", accept="video/*", required)
+                    label(for="thumb") 썸네일 선택
+                    input(id="thumb", name="thumb", type="file", accept="image/*", required)
+                    input(type="submit", value="동영상 업로드")
 
 block scripts 
     script(src="/static/js/recorder.js")

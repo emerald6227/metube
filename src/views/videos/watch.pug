@@ -1,58 +1,108 @@
 extends ../base.pug
+include ../mixins/recommended-video
 
 block content
-    div#videoContainer(data-id=video._id)
-        if isHeroku
-            video(src=`${video.fileUrl}`)#video
-        else
-            video(src=`/${video.fileUrl}`)#video
-        div#videoControls
-            div#videoDuration
-                input(type="range", min="0", step="1", value="0")#timeline
-            div#videoFunctions
-                div#videoFunctions-left
-                    button#play
-                        i.fas.fa-play
-                    button#mute
-                        i.fas.fa-volume-up
-                    input(type="range", min="0", max="1", step="0.1", value="1")#volume
-                    div#timetable
-                        span#currentTime 00:00:00
-                        span &nbsp;/&nbsp;
-                        span#totalTime 00:00:00
-                div#videoFunctions-right
-                    button#fullScreen
-                        i.fas.fa-expand
+    div#watch__container
+        div#watch-primary__container
+            div#videoContainer(data-id=video._id)
+                if isHeroku
+                    video(src=`${video.fileUrl}`)#video
+                else
+                    video(src=`/${video.fileUrl}`)#video
+                div#videoControls
+                    div#videoDuration
+                        input(type="range", min="0", step="1", value="0")#timeline
+                    div#videoFunctions
+                        div#videoFunctions-left
+                            button#play
+                                i.fas.fa-play
+                            button#mute
+                                i.fas.fa-volume-up
+                            input(type="range", min="0", max="1", step="0.1", value="1")#volume
+                            div#timetable
+                                span#currentTime 00:00:00
+                                span &nbsp;/&nbsp;
+                                span#totalTime 00:00:00
+                        div#videoFunctions-right
+                            button#fullScreen
+                                i.fas.fa-expand
 
-    div
-        p=video.hashtags
-        h3=video.title
-        small=video.createdAt
-        p=video.description
-    div 
-        h3 uploaded by 
-            a(href=`/users/${video.owner._id}`) #{video.owner.name}
-    if String(loggedInUser._id) === String(video.owner._id)
-        br
-        a(href=`${video.id}/edit`) Edit video &larr;
-        br
-        a(href=`${video.id}/delete`) Delete video &larr;
+            div#video__primary-Info
+                p=video.hashtags
+                h1=video.title
+                div#video__additional-info
+                    span 조회수 #{video.meta.views} 회
+                    span#dot •
+                    span=video.createdAt
+            div#video__owner-info
+                div#video_owner-primary-info
+                    div#video_owner-primary-info--left
+                        if isHeroku
+                            a(href=`/users/${video.owner._id}`)
+                                img.owner-info__avatar(src=`${video.owner.avatarUrl}`)
+                        else
+                            a(href=`/users/${video.owner._id}`)
+                                img.owner-info__avatar(src=`/${video.owner.avatarUrl}`)
+                        a(href=`/users/${video.owner._id}`) #{video.owner.name}
+                    div#video_owner-primary-info--right
+                        if String(loggedInUser._id) === String(video.owner._id)
+                            a(href=`${video.id}/edit`)
+                                button 동영상 수정
+                            a(href=`${video.id}/delete`)
+                                button 동영상 삭제
+                div#video_owner-info-description
+                    p=video.description
 
-    if loggedIn
-        div.video__add-comments   
-            form.video__comment-form#commentForm
-                textarea(cols="50", rows="5", placeholder="Write comment")
-                button Add Comment
+            h3#count__comments 댓글 #{video.comments.length}개
 
-    div.video__comments
-        each comment in video.comments.reverse()
-            div.video__comment(data-id=comment.id)
-                i.fas.fa-comment
-                span #{comment.text}
-                if String(loggedInUser._id) === String(comment.owner._id)
-                    i.fas.fa-times.deleteCommentBtn
+            if loggedIn
+                div.video__add-comments
+                    div.video__add-comments--avatar
+                        if(loggedInUser.avatarUrl === "")
+                            span 😃
+                        else
+                            if loggedInUser.avatarUrl
+                                if isHeroku
+                                    img.add-comments--avatar(src=`${loggedInUser.avatarUrl}`)
+                                else
+                                    img.add-comments--avatar(src=`/${loggedInUser.avatarUrl}`)
+                    form.video__add-comment--form
+                        div.video__add-comment--text
+                            input(type="text", placeholder="댓글 입력")
+                        div.video__add-comment--btns
+                            button#btn__cancle-comment 취소
+                            button#btn__add-comment 댓글
+
+            div.video__comments
+                each comment in video.comments.reverse()
+                    div.video__comment(data-id=comment.id)
+                        a(href=`/users/${comment.owner.id}`).video__comment--avatarWrapper
+                            if isHeroku
+                                img.video__comment--avatar(src=`${comment.owner.avatarUrl}`)
+                            else
+                                img.video__comment--avatar(src=`/${comment.owner.avatarUrl}`)
+                        div.video__comment--content
+                            div.video__comment--primary
+                                div.video__comment-primary--left
+                                    span=comment.owner.name
+                                    span=comment.createdAt
+                                div.video__comment-primary--right
+                                    if String(loggedInUser._id) === String(comment.owner._id)
+                                        i.fas.fa-times.deleteCommentBtn
+                            div.video__comment--secondary
+                                span #{comment.text}
+
+        div#watch-secondary__container
+            div.recommended-videos__wrapper
+                if(recommendedVideos.length >= 1)
+                    each video in recommendedVideos
+                        +recommended-video(video)
+                else
+                    div.recommended-videos__none
+                        span No videos have been uploaded.
 
 block scripts
     script(src="/static/js/videoPlayer.js")
+    script(src="/static/js/previewVideo.js")
     if loggedIn 
         script(src="/static/js/commentSection.js")

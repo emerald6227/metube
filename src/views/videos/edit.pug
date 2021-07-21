@@ -1,9 +1,14 @@
 extends ../base.pug
 
 block content
-    h4 Update video
-    form(method="POST")
-        input(name="title", placeholder="title", required, type="text", maxlength="80", value=video.title)
-        input(name="description", placeholder="Description", required, type="text", minlength="2", value=video.description)
-        input(name="hashtags", placeholder="Hashtags, separated by comma.", required, type="text", value=video.hashtags.join())
-        input(value="save", type="submit")
+    div.default__container
+        div.update-video__wrapper
+            h3 동영상 수정
+            form(method="POST")
+                label(for="title") 제목
+                input(id="title", name="title", placeholder="title", required, type="text", maxlength="80", value=video.title)
+                label(for="description") 설명
+                input(id="description", name="description", placeholder="Description", required, type="text", minlength="2", value=video.description)
+                label(for="hashtags") 해시태그
+                input(id="hashtags", name="hashtags", placeholder="Hashtags, separated by comma.", required, type="text", value=video.hashtags.join())
+                input(value="저장", type="submit")
