@@ -16,7 +16,16 @@ const addComment = (text, newCommentId, commentCreatedAt, ownerId, ownerName, av
     a.className = "video__comment--avatarWrapper";
     const img = document.createElement("img");
     img.className = "video__comment--avatar";
-    img.src = isHeroku ? img.src = avatarUrl : imgsrc = `/${avatarUrl}`;
+    if (isHeroku) {
+        console.log(typeof avatarUrl)
+        if (avatarUrl === `images/default-profile.png`) {
+            img.src = `/${avatarUrl}`;
+        } else{
+            img.src = `${avatarUrl}`;
+        }
+    } else {
+        img.src = `/${avatarUrl}`;
+    }
 
     a.appendChild(img);
     newComment.appendChild(a);
