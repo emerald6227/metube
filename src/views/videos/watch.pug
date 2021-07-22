@@ -84,7 +84,7 @@ block content
                     div.video__comment(data-id=comment.id)
                         a(href=`/users/${comment.owner.id}`).video__comment--avatarWrapper
                             if isHeroku
-                                if(coment.owner.avatarUrl === `images/default-profile.png`)
+                                if(comment.owner.avatarUrl === `images/default-profile.png`)
                                     img.video__comment--avatar(src=`/${comment.owner.avatarUrl}`)
                                 else
                                     img.video__comment--avatar(src=`${comment.owner.avatarUrl}`)
