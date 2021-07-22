@@ -33,14 +33,33 @@ const handleStopPreviewVideo = (event) => {
     
 }
 
+const previewVideoDuration = (video, durationSpan) => {
+    durationSpan.innerText = formatTime(video.duration);
+}
+
 const handleLoadedPreviewVideoMetadata = (event) => {
-    const span = event.target.nextSibling;
-    span.innerText = formatTime(event.target.duration);
+    const video = event.target;
+    const durationSpan = video.nextSibling;
+    previewVideoDuration(video, durationSpan);
+}
+
+// heroku duration
+const setPreviewVideoMetadata = (video, durationSpan) => {
+    if (durationSpan.innerText === "00:00:00") {
+        const metadataInterval = setInterval(previewVideoDuration, 1000, video, durationSpan);
+        setTimeout(()=> {
+            if (durationSpan.innerText !== "00:00:00") {
+                clearInterval(metadataInterval);
+            }
+        }, 3000);
+    }
 }
 
 if (videos) {
     for (const video of videos) {
+        const durationSpan = video.nextSibling;
         video.addEventListener("loadedmetadata", handleLoadedPreviewVideoMetadata);
+        setPreviewVideoMetadata(video, durationSpan);
     }
 }
 

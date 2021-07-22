@@ -80,7 +80,14 @@ const handleLoadedMetadata = () => {
     timeLine.max = Math.floor(video.duration);
 };
 
-setInterval(handleLoadedMetadata, 1000);
+if (totalTime.innerText === "00:00:00") {
+    const metadataInterval = setInterval(handleLoadedMetadata, 1000);
+    setTimeout(()=> {
+        if (totalTime.innerText !== "00:00:00") {
+            clearInterval(metadataInterval);
+        }
+    }, 3000);
+}
 
 const handleTimeUpdate = () => {
     currentTime.innerText = formatTime(Math.floor(video.currentTime));

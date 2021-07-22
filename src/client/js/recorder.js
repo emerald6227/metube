@@ -70,6 +70,8 @@ const handleStop = () => {
 };
 
 const handleStart = async () => {
+    actionBtn.disabled = true;
+
     if (video !== null) {
         recordVideoBox.removeChild(video);
     }
@@ -79,10 +81,16 @@ const handleStart = async () => {
     videoObj.height = 576;
     video = videoObj;
     recordVideoBox.insertBefore(videoObj, actionBtn);
+
     await init();
-    actionBtn.innerText = "동영상 녹화 중지";
+
+    actionBtn.innerText = "최소 3초 이상 녹화...";
     actionBtn.removeEventListener("click", handleStart);
     actionBtn.addEventListener("click", handleStop);
+    setTimeout(() => { 
+        actionBtn.disabled = false;
+        actionBtn.innerText = "동영상 녹화 중지";
+    }, 4000);
 
     recorder = new MediaRecorder(stream, { MimeType: "video/webm" });
     recorder.ondataavailable = (event) => { 
