@@ -5,7 +5,10 @@ block content
     div.profile__data
         if loggedInUser.avatarUrl 
             if isHeroku
-                img(src=`${loggedInUser.avatarUrl}`).avatar
+                if(loggedInUser.avatarUrl === `images/default-profile.png`)
+                    img(src=`/${loggedInUser.avatarUrl}`).avatar
+                else
+                    img(src=`${loggedInUser.avatarUrl}`).avatar
             else
                 img(src=`/${loggedInUser.avatarUrl}`).avatar
         h3 #{user.name}

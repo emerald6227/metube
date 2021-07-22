@@ -39,7 +39,10 @@ block content
                     div#video_owner-primary-info--left
                         if isHeroku
                             a(href=`/users/${video.owner._id}`)
-                                img.owner-info__avatar(src=`${video.owner.avatarUrl}`)
+                                if(video.owner.avatarUrl === `images/default-profile.png`)
+                                    img.owner-info__avatar(src=`/${video.owner.avatarUrl}`)
+                                else
+                                    img.owner-info__avatar(src=`${video.owner.avatarUrl}`)
                         else
                             a(href=`/users/${video.owner._id}`)
                                 img.owner-info__avatar(src=`/${video.owner.avatarUrl}`)
@@ -63,7 +66,10 @@ block content
                         else
                             if loggedInUser.avatarUrl
                                 if isHeroku
-                                    img.add-comments--avatar(src=`${loggedInUser.avatarUrl}`)
+                                    if(loggedInUser.avatarUrl === `images/default-profile.png`)
+                                        img.add-comments--avatar(src=`/${loggedInUser.avatarUrl}`)
+                                    else
+                                        img.add-comments--avatar(src=`${loggedInUser.avatarUrl}`)
                                 else
                                     img.add-comments--avatar(src=`/${loggedInUser.avatarUrl}`)
                     form.video__add-comment--form
@@ -78,7 +84,10 @@ block content
                     div.video__comment(data-id=comment.id)
                         a(href=`/users/${comment.owner.id}`).video__comment--avatarWrapper
                             if isHeroku
-                                img.video__comment--avatar(src=`${comment.owner.avatarUrl}`)
+                                if(coment.owner.avatarUrl === `images/default-profile.png`)
+                                    img.video__comment--avatar(src=`/${comment.owner.avatarUrl}`)
+                                else
+                                    img.video__comment--avatar(src=`${comment.owner.avatarUrl}`)
                             else
                                 img.video__comment--avatar(src=`/${comment.owner.avatarUrl}`)
                         div.video__comment--content
