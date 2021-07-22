@@ -1,5 +1,5 @@
 form {
-  width: 90%;
+  width: 100%;
   max-width: 420px;
   margin: 0 auto;
   padding: 20px;
@@ -26,7 +26,8 @@ input[type="submit"] {
   padding: 10px 20px 8px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 5px;
-  width: 90%;
+  width: 100%;
+  box-sizing: border-box;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);

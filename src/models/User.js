@@ -5,7 +5,7 @@ import Comment from './Comment';
 
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
-    avatarUrl: { type: String, default: "" },
+    avatarUrl: { type: String, default: "images/default-profile.png" },
     socialOnly: { type: Number, default: false },
     username: { type: String, required: true, unique: true },
     password: { type: String },
