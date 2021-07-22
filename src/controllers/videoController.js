@@ -20,6 +20,13 @@ export const watch = async (req, res) => {
 
     const recommendedVideos = await Video.find({}).sort({createdAt: 'desc'}).populate("owner").limit(20);
 
+    for (let i = 0; i < recommendedVideos.length; i++) {
+        if (String(recommendedVideos[i]._id) === id) {
+            recommendedVideos.splice(i, 1);
+            break;
+        }
+    }
+
     if (!video) {
         return res.status(404).render("404", { pageTitle: "Video not found." });
     }
