@@ -49,13 +49,13 @@ html {
 }
 
 .empty-box {
-  width: 20px;
+  width: 1.25rem;
   height: auto;
   margin-left: 15.625rem;
   background-color: $mainBackground;
 }
 
-// home responsive
+// home video-grid responsive
 @media screen and (max-width: 511px) {
   .video-grid {
     grid-template-columns: repeat(1, 1fr);
@@ -69,5 +69,29 @@ html {
 @media screen and (min-width: 888px) and (max-width: 1143px) {
   .video-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// home side-nav responsive
+@media screen and (max-width: 1328px) {
+  #nav-box {
+    width: 4.5rem !important;
+
+    .nav-menu__item {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 !important;
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+
+      i {
+        margin: 0 0 !important;
+      }
+    }
+  }
+
+  .empty-box {
+    margin-left: 3.375rem;
   }
 }

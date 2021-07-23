@@ -17,7 +17,6 @@ const addComment = (text, newCommentId, commentCreatedAt, ownerId, ownerName, av
     const img = document.createElement("img");
     img.className = "video__comment--avatar";
     if (isHeroku) {
-        console.log(typeof avatarUrl)
         if (avatarUrl === `images/default-profile.png`) {
             img.src = `/${avatarUrl}`;
         } else{
