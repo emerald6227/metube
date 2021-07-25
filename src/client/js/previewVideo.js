@@ -1,5 +1,6 @@
 const videos = document.querySelectorAll(".preview-video");
-const videoWrappers = document.querySelectorAll(".recommended-video__wrapper");
+const homeVideoWrappers = document.querySelectorAll(".home-video__wrapper");
+const recommendedVideoWrappers = document.querySelectorAll(".recommended-video__wrapper");
 
 let previewVideoMouseOver = false;
 let previewVideoIntervalReset = null;
@@ -63,9 +64,16 @@ if (videos) {
     }
 }
 
-if (videoWrappers) {
-    for (const videoWrapper of videoWrappers) {
-        videoWrapper.addEventListener("mouseenter", handleStartPreviewVideo);
-        videoWrapper.addEventListener("mouseleave", handleStopPreviewVideo);
+if (homeVideoWrappers) {
+    for (const homeVideo of homeVideoWrappers) {
+        homeVideo.addEventListener("mouseenter", handleStartPreviewVideo);
+        homeVideo.addEventListener("mouseleave", handleStopPreviewVideo);
+    }
+}
+
+if (recommendedVideoWrappers) {
+    for (const recommendedVideo of recommendedVideoWrappers) {
+        recommendedVideo.addEventListener("mouseenter", handleStartPreviewVideo);
+        recommendedVideo.addEventListener("mouseleave", handleStopPreviewVideo);
     }
 }

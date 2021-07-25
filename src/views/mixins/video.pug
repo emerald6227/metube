@@ -1,8 +1,21 @@
 mixin video(video)
-    a(href=`/videos/${video.id}`).video-mixin
-        div.video-mixin__thumb(style=`background-image:url(${video.thumbUrl}); background-size: cover; background-position: center;`)
-        div.video-mixin__data
-            span.video-mixin__title=video.title
-            div.video-mixin__meta 
-                span #{video.owner.name} - 
-                span #{video.meta.views} 회 재생
+    div.home-video
+        div.home-video__primary
+            a(href=`/videos/${video.id}`)
+                div.home-video__wrapper
+                    if isHeroku
+                        video(src=`${video.fileUrl}`, poster=`${video.thumbUrl}`, muted="muted", preload="metadata").preview-video
+                    else
+                        video(src=`/${video.fileUrl}`, poster=`/${video.thumbUrl}` muted="muted", preload="metadata").preview-video
+                    span.home-video__time
+        div.home-video__secondary
+            div.home-video__avatar
+                a.home-video__wrapper--avatar(href=`/users/${video.owner._id}`)
+                    img(src=`${video.owner.avatarUrl}`)
+            div.home-video__wrapper--info
+                a(href=`/videos/${video.id}`)
+                    div.home-video__title
+                        span #{video.title}
+                    div.home-video__info 
+                        span #{video.owner.name}
+                        span 조회수 #{video.meta.views}회
