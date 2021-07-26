@@ -40,6 +40,15 @@ const handleResizeScreen = () => {
     }
 }
 
+const handleEnterScrollbar = () => {
+    homeContainer.classList.add("showScrollbar");
+    
+};
+
+const handleLeaveScrollbar = () => {
+    homeContainer.classList.remove("showScrollbar");
+}
+
 const init = () => {
     if (navMenuLogin) {
         notLoggedInUser = true;
@@ -50,3 +59,5 @@ init();
 
 window.addEventListener("resize", handleResizeScreen);
 window.addEventListener("load", handleResizeScreen);
+navBoxDiv.addEventListener("mouseenter", handleEnterScrollbar);
+navBoxDiv.addEventListener("mouseleave", handleLeaveScrollbar);

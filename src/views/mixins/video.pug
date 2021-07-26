@@ -1,21 +1,27 @@
 mixin video(video)
-    div.home-video
-        div.home-video__primary
+    div.video-mixin
+        div.video-mixin__primary
             a(href=`/videos/${video.id}`)
-                div.home-video__wrapper
+                div.video-mixin__wrapper
                     if isHeroku
                         video(src=`${video.fileUrl}`, poster=`${video.thumbUrl}`, muted="muted", preload="metadata").preview-video
                     else
                         video(src=`/${video.fileUrl}`, poster=`/${video.thumbUrl}` muted="muted", preload="metadata").preview-video
-                    span.home-video__time
-        div.home-video__secondary
-            div.home-video__avatar
-                a.home-video__wrapper--avatar(href=`/users/${video.owner._id}`)
-                    img(src=`${video.owner.avatarUrl}`)
-            div.home-video__wrapper--info
+                    span.video-mixin__time
+        div.video-mixin__secondary
+            div.video-mixin__avatar
+                a.video-mixin__wrapper--avatar(href=`/users/${video.owner._id}`)
+                    if isHeroku
+                        if(video.owner.avatarUrl === `images/default-profile.png`)
+                            img(src=`/${video.owner.avatarUrl}`).avatar
+                        else
+                            img(src=`${video.owner.avatarUrl}`).avatar
+                    else
+                        img(src=`/${video.owner.avatarUrl}`).avatar
+            div.video-mixin__wrapper--info
                 a(href=`/videos/${video.id}`)
-                    div.home-video__title
+                    div.video-mixin__title
                         span #{video.title}
-                    div.home-video__info 
+                    div.video-mixin__info 
                         span #{video.owner.name}
                         span 조회수 #{video.meta.views}회
