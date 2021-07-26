@@ -14,10 +14,10 @@
 @import "./components/navigation.scss";
 @import "./components/login-box.scss";
 @import "./components/default-container.scss";
+@import "./components/search.scss";
 
 // Screens
 @import "./screens/home.scss";
-@import "./screens/search.scss";
 @import "./screens/profile.scss";
 @import "./screens/edit-profile.scss";
 @import "./screens/upload.scss";
@@ -75,7 +75,20 @@ html {
 // home side-nav responsive
 @media screen and (max-width: 1328px) {
   #nav-box {
-    width: 4.5rem !important;
+    width: 5rem !important;
+
+    .nav-menu {
+      border-bottom: unset;
+      .nav-menu__item:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .nav-menu:nth-child(2) {
+      .nav-menu__item {
+        margin-top: 0;
+      }
+    }
 
     .nav-menu__item {
       flex-direction: column;

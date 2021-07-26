@@ -13,7 +13,7 @@ block content
                 else
                     img(src=`/${user.avatarUrl}`).avatar
             h3 #{user.name}
-        div.video-grid.video-grid--profile
+        div.video-grid.video-grid--small
             each video in user.videos 
                 +video(video)
             else

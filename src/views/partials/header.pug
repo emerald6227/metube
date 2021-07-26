@@ -5,11 +5,13 @@ header
         a(href="/").header__logo
             i.fab.fa-youtube
             span RavenTube
+    div.search__wrapper
+        form(method="GET", action="/search").search__form
+            input(name="keyword", placeholder="검색", type="text")
+            button
+                i.fas.fa-search
     nav 
         ul 
-            li
-                a(href="/search")
-                    i.fas.fa-search
             if loggedIn
                 li 
                     a(href="/videos/upload") 동영상 업로드

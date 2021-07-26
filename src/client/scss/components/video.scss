@@ -38,7 +38,7 @@
     display: flex;
 
     .video-mixin__avatar {
-      width: 15%;
+      width: 48px;
 
       .video-mixin__wrapper--avatar {
         img {
@@ -80,5 +80,22 @@
         }
       }
     }
+  }
+}
+
+.video-grid {
+  background-color: $mainBackground;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px 15px;
+  padding: 20px 40px 20px 25px;
+}
+
+.video-grid--small {
+  width: 90% !important;
+
+  .home-video {
+    min-width: 15rem;
   }
 }
