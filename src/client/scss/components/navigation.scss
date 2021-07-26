@@ -27,6 +27,7 @@
       color: #aaa;
       box-sizing: border-box;
       cursor: default;
+      font-weight: 600;
     }
 
     .nav-menu__item {
@@ -44,7 +45,8 @@
       }
 
       span {
-        height: 1.5rem;
+        height: 1.125rem;
+        font-size: 0.875rem;
       }
     }
 

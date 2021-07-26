@@ -17,7 +17,7 @@
       border-bottom: 0.0625rem solid $seperatorColor;
       word-break: break-all;
 
-      p {
+      span {
         font-size: 0.875rem;
         color: $aTagBlue;
         overflow: hidden;
@@ -101,11 +101,14 @@
       #video_owner-info-description {
         margin-top: 1rem;
         margin-left: 4rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
+
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
 
         a {
           color: $aTagBlue;
@@ -202,12 +205,14 @@
 
             span {
               font-size: 0.9375rem;
+              font-weight: 600;
             }
 
             span:nth-child(2) {
               color: $youtubeGray;
               margin-left: 0.625rem;
               font-size: 0.875rem;
+              font-weight: 0;
             }
 
             .deleteCommentBtn {
@@ -225,7 +230,7 @@
             word-break: break-all;
 
             span {
-              font-size: 1.063rem;
+              font-size: 0.9375rem;
             }
           }
         }

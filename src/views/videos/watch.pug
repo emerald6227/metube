@@ -28,7 +28,7 @@ block content
                                 i.fas.fa-expand
 
             div#video__primary-Info
-                p=video.hashtags
+                span=video.hashtags
                 h1=video.title
                 div#video__additional-info
                     span 조회수 #{video.meta.views} 회
@@ -54,7 +54,7 @@ block content
                             a(href=`${video.id}/delete`)
                                 button 동영상 삭제
                 div#video_owner-info-description
-                    p=video.description
+                    span=video.description
 
             h3#count__comments 댓글 #{video.comments.length}개
 
