@@ -3,7 +3,7 @@
 
   .search__form {
     align-items: unset !important;
-    max-width: 575px;
+    max-width: 600px;
     height: 30px !important;
     padding: 0 !important;
     display: flex;
@@ -14,9 +14,13 @@
     background-color: unset;
 
     input {
+      max-width: 530px;
       height: 30px !important;
-      border: 1px solid #494949 !important;
-      border-radius: 3px;
+      border-top: 1px solid #494949 !important;
+      border-left: 1px solid #494949 !important;
+      border-bottom: 1px solid #494949 !important;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
       background-color: $mainBackground !important;
     }
 
@@ -26,12 +30,21 @@
       justify-content: center;
       align-items: center;
       height: 28px;
-      width: 65px;
+      width: 70px;
       background-color: #313131;
-      border: 1px solid #494949 !important;
-      border-radius: 3px;
+      border-top: 1px solid #494949 !important;
+      border-right: 1px solid #494949 !important;
+      border-bottom: 1px solid #494949 !important;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
       cursor: pointer;
 
+      i {
+        color: #494949;
+      }
+    }
+
+    button:hover {
       i {
         color: #989898;
       }

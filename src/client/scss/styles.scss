@@ -57,6 +57,9 @@ html {
 
 // home video-grid responsive
 @media screen and (max-width: 511px) {
+  #home-container {
+    margin-top: 100px;
+  }
   .video-grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -105,7 +108,7 @@ html {
   }
 
   .empty-box {
-    margin-left: 3.375rem;
+    margin-left: 5rem;
   }
 }
 

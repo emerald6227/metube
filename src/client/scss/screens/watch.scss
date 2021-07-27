@@ -293,6 +293,7 @@
                 right: 3px;
                 bottom: 3px;
                 font-size: 12px;
+                font-weight: 600;
               }
             }
           }
@@ -311,7 +312,7 @@
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
-                font-weight: 500;
+                font-weight: 600;
               }
             }
 
@@ -321,7 +322,8 @@
 
               span {
                 color: $youtubeGray;
-                font-size: 0.875rem;
+                font-size: 0.813rem;
+                font-weight: 500;
               }
             }
           }
