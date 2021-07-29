@@ -10,7 +10,7 @@ block content
             div.upload__video
                 h3 동영상 업로드
                 if errorMessage
-                    span=errorMessage
+                    span.error-message #{errorMessage}
                 form(method="POST", enctype="multipart/form-data")
                     label(for="title") 제목
                     input(id="title", name="title", placeholder="title", required, type="text", maxlength="80")

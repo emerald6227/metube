@@ -14,15 +14,20 @@
   top: 10px;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  max-width: 200px;
+  margin: 100px auto;
+  max-width: 500px;
   padding: 10px 20px;
-  border-radius: 10000px;
+  border-radius: 25px;
   text-align: center;
   animation: goAway 0.5s ease-in-out forwards;
   animation-delay: 5s;
   &.error {
-    background-color: tomato;
+    background-color: $youtubeRed;
+    color: white;
+  }
+  &.info,
+  &.success {
+    background-color: $aTagBlue;
     color: white;
   }
 }

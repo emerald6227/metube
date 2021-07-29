@@ -170,11 +170,21 @@ export const postEdit = async (req, res) => {
 
         req.session.user = updatedUser;
     } catch(error) {
-        console.log(error);
+        console.error(error);
     }
 
     return res.redirect("/users/edit");
 }
+
+export const postEditErrorHandler = (err, req, res, next) => {
+    if (err) {
+        if (req.file === undefined) {
+            req.flash("error", `이미지 용량이 너무 큽니다. 이미지 용량은 1MB를 넘을 수 없습니다.`);
+            return res.status(500).render("users/edit-profile", { pageTitle: "Edit Profile" });
+        }
+    }
+    next();
+};
 
 // Change Password
 export const getChangePassword = (req, res) => {

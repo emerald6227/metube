@@ -100,6 +100,16 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
 }
 
+export const postUploadErrorHandler = (err, req, res, next) => {
+    if (err) {
+        if (req.files.video === undefined) {
+            req.flash("error", `영상 용량이 너무 큽니다. 영상 용량은 500MB를 넘을 수 없습니다.`);
+            return res.status(500).render("videos/upload", { pageTitle: "Upload Video" });
+        }
+    }
+    next();
+}
+
 export const deleteVideo = async (req, res) => {
     const { id } = req.params;
     const {
