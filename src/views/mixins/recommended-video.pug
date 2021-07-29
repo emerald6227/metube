@@ -7,7 +7,7 @@ mixin recommended-video(video)
                         video(src=`${video.fileUrl}`, poster=`${video.thumbUrl}`, muted="muted", preload="metadata").preview-video
                     else
                         video(src=`/${video.fileUrl}`, poster=`/${video.thumbUrl}` muted="muted", preload="metadata").preview-video
-                    span.recommended-video__time 00:00:00
+                    span.recommended-video__time
             div.recommended-video__secondary
                 div.recommended-video__title
                     span=video.title

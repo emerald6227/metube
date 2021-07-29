@@ -46,13 +46,13 @@ const handleLoadedPreviewVideoMetadata = (event) => {
 
 // heroku duration
 const setPreviewVideoMetadata = (video, durationSpan) => {
-    if (durationSpan.innerText === "00:00:00") {
-        const metadataInterval = setInterval(previewVideoDuration, 1000, video, durationSpan);
+    if (durationSpan.innerText === "") {
+        const metadataInterval = setInterval(previewVideoDuration, 500, video, durationSpan);
         setTimeout(()=> {
             if (durationSpan.innerText !== "00:00:00") {
                 clearInterval(metadataInterval);
             }
-        }, 3000);
+        }, 1000);
     }
 }
 
