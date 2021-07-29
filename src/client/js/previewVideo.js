@@ -49,7 +49,7 @@ const setPreviewVideoMetadata = (video, durationSpan) => {
     if (durationSpan.innerText === "") {
         const metadataInterval = setInterval(previewVideoDuration, 500, video, durationSpan);
         setTimeout(()=> {
-            if (durationSpan.innerText !== "00:00:00") {
+            if (durationSpan.innerText !== "") {
                 clearInterval(metadataInterval);
             }
         }, 1000);
