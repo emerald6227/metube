@@ -1,3 +1,7 @@
+// moment import시 성능에 영향을 줄 수 있기에 삭제
+// import moment from "moment";
+// moment.lang("ko");
+
 const videoContainer = document.getElementById("videoContainer");
 const form = document.querySelector(".video__add-comment--form");
 const addCommentBtn = document.getElementById("btn__add-comment");
@@ -40,7 +44,8 @@ const addComment = (text, newCommentId, commentCreatedAt, ownerId, ownerName, av
     const commentOwnerName = document.createElement("span");
     commentOwnerName.innerText = ownerName;
     const commentCreatedAtSpan = document.createElement("span");
-    commentCreatedAtSpan.innerText = commentCreatedAt;
+    commentCreatedAtSpan.innerText = `몇 초 전`;
+    // commentCreatedAtSpan.innerText = moment(commentCreatedAt).fromNow();
 
     const contentPrimaryDivRight = document.createElement("div");
     contentPrimaryDivRight.className = "video__comment-primary--right";

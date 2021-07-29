@@ -33,7 +33,7 @@ block content
                 div#video__additional-info
                     span 조회수 #{video.meta.views} 회
                     span#dot •
-                    span=video.createdAt
+                    span #{moment(video.createdAt).format(`YYYY. MM. DD.`)}
             div#video__owner-info
                 div#video_owner-primary-info
                     div#video_owner-primary-info--left
@@ -94,7 +94,7 @@ block content
                             div.video__comment--primary
                                 div.video__comment-primary--left
                                     span=comment.owner.name
-                                    span=comment.createdAt
+                                    span #{moment(comment.createdAt).fromNow()}
                                 div.video__comment-primary--right
                                     if String(loggedInUser._id) === String(comment.owner._id)
                                         i.fas.fa-times.deleteCommentBtn

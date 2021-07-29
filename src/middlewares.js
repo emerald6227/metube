@@ -1,6 +1,8 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
+import moment from "moment";
+moment.lang("ko");
 
 const s3 = new aws.S3({
     credentials: {
@@ -28,6 +30,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.siteNmae="Metube";
     res.locals.loggedInUser = req.session.user || {};
     res.locals.isHeroku = isHeroku;
+    res.locals.moment = moment;
     next();
 };
 

@@ -24,4 +24,7 @@ mixin video(video)
                         span #{video.title}
                     div.video-mixin__info 
                         span #{video.owner.name}
-                        span 조회수 #{video.meta.views}회
+                        div.video-mixin__additional-info
+                            span 조회수 #{video.meta.views}회 
+                            span#dot • 
+                            span #{moment(video.createdAt).fromNow()}
