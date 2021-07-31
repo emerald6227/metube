@@ -332,3 +332,31 @@
     }
   }
 }
+
+@media screen and (max-width: 1015px) {
+  #watch-secondary__container {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+
+  .recommended-videos__wrapper {
+    width: 100% !important;
+
+    .recommended-video {
+      height: auto !important;
+
+      a {
+        width: 100%;
+      }
+
+      .recommended-video__primary {
+        width: 10.5rem !important;
+        height: 5.875rem !important;
+      }
+
+      .recommended-video__secondary {
+        width: 70% !important;
+      }
+    }
+  }
+}

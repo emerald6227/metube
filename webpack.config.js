@@ -10,7 +10,8 @@ module.exports = {
         recorder: BASE_JS + "recorder.js",
         commentSection: BASE_JS + "commentSection.js",
         previewVideo: BASE_JS + "previewVideo.js",
-        sideNavigation: BASE_JS + "sideNavigation.js"
+        sideNavigation: BASE_JS + "sideNavigation.js",
+        recommendedVideo: BASE_JS + "recommendedVideo.js"
     },
     // mode: "development",
     // watch: true,
