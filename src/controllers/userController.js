@@ -223,12 +223,11 @@ export const postChangePassword = async (req, res) => {
 
 // user profile
 export const seeProfile = async (req, res) => {
-    // const { id } = req.params;
     const { 
         params: { id },
         session: { user }
     } = req;
-    // const user = await User.findById(id).populate("videos");
+
     const ownerUser = await User.findById(id).populate({
         path: "videos",
         populate: {
@@ -240,7 +239,6 @@ export const seeProfile = async (req, res) => {
     if (!ownerUser) {
         return res.status(404).render("404", { pageTitle: "User not found."});
     }
-    console.log("ownerUser: ", ownerUser);
 
     let subscribed = false;
     let subscribedCount = 0;
@@ -248,11 +246,8 @@ export const seeProfile = async (req, res) => {
         try {
             subscribed = await checkSubscribed(id, user._id);
             subscribedCount = await getSubscribedCount(id);
-
-            console.log("subscribed: ", subscribed);
-            console.log("subscribedCount: ", subscribedCount);
         } catch (error) {
-            console.error("seeProfile: ", error);
+            console.error(error);
         }
     }
 
