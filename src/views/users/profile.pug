@@ -4,7 +4,7 @@ include ../mixins/video
 block content
     div.default__container
         div.profile__data
-            if ownerUser.avatarUrl 
+            if ownerUser.avatarUrl
                 if isHeroku
                     if(user.avatarUrl === `images/default-profile.png`)
                         img(src=`/${ownerUser.avatarUrl}`).avatar

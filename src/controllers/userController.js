@@ -163,7 +163,6 @@ export const postEdit = async (req, res) => {
             avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
             name,
             email,
-            username,
             location
             },
             { new: true }
@@ -243,19 +242,19 @@ export const seeProfile = async (req, res) => {
     }
     console.log("ownerUser: ", ownerUser);
 
-    let subscribed = null;
+    let subscribed = false;
     let subscribedCount = 0;
-    if (user) {
-        try {
-            subscribed = await checkSubscribed(id, user._id);
-            subscribedCount = await getSubscribedCount(id);
+    // if (user) {
+    //     try {
+    //         subscribed = await checkSubscribed(id, user._id);
+    //         subscribedCount = await getSubscribedCount(id);
 
-            console.log("subscribed: ", subscribed);
-            console.log("subscribedCount: ", subscribedCount);
-        } catch (error) {
-            console.error("seeProfile: ", error);
-        }
-    }
+    //         console.log("subscribed: ", subscribed);
+    //         console.log("subscribedCount: ", subscribedCount);
+    //     } catch (error) {
+    //         console.error("seeProfile: ", error);
+    //     }
+    // }
 
     return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , ownerUser, subscribed, subscribedCount });
 };
