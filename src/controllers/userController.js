@@ -237,6 +237,8 @@ export const seeProfile = async (req, res) => {
             model: "User"
         }
     });
+
+    console.log("오너유저네임", ownerUser.name);
     
     if (!ownerUser) {
         return res.status(404).render("404", { pageTitle: "User not found."});

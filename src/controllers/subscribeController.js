@@ -47,15 +47,15 @@ export const checkSubscribed = async (subscribeTo, subscribeFrom) => {
 };
 
 export const getSubscribedCount = async (subscribeTo) => {
-    const subscribedCount = await Subscribe.find({ subscribeTo }).count();
-    return subscribedCount;
+    const subscribedCount = await Subscribe.find({ subscribeTo });
+    return subscribedCount.length;
 };
 
 export const getSubscribedList = async (req, res) => {
     const { user } = req.session;
     const subscribedList = await Subscribe.find({ subscribeFrom: user._id }).sort({createdAt: 'desc'}).populate("subscribeTo");
     const isHeroku = process.env.NODE_ENV === "production";
-    
+
     if (subscribedList.length === null) {
         return res.sendStatus(404);
     }
