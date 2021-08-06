@@ -11,7 +11,8 @@ module.exports = {
         commentSection: BASE_JS + "commentSection.js",
         previewVideo: BASE_JS + "previewVideo.js",
         sideNavigation: BASE_JS + "sideNavigation.js",
-        recommendedVideo: BASE_JS + "recommendedVideo.js"
+        recommendedVideo: BASE_JS + "recommendedVideo.js",
+        subscribe: BASE_JS + "subscribe.js"
     },
     // mode: "development",
     // watch: true,

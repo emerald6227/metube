@@ -1,6 +1,7 @@
 import Video from "../models/Video";
 import User from "../models/User";
 import Comment from "../models/Comment";
+import { checkSubscribed, getSubscribedCount } from './subscribeController';
 
 export const home = async (req, res, next) => {
     try {
@@ -12,7 +13,11 @@ export const home = async (req, res, next) => {
 }
 
 export const watch = async (req, res) => {
-    const { id } = req.params;
+    const { 
+        params: { id },
+        session: { user }
+    } = req;
+
     const video = await Video.findById(id).populate("owner").populate({
         path: 'comments', 
         populate : "owner"
@@ -30,7 +35,15 @@ export const watch = async (req, res) => {
     if (!video) {
         return res.status(404).render("404", { pageTitle: "Video not found." });
     }
-    return res.render("videos/watch", { pageTitle: video.title, video, recommendedVideos });
+
+    let subscribed = null;
+    let subscribedCount = 0;
+    if (user) {
+        subscribed = await checkSubscribed(video.owner._id, user._id);
+        subscribedCount = await getSubscribedCount(video.owner._id);
+    }
+
+    return res.render("videos/watch", { pageTitle: video.title, video, recommendedVideos, subscribed, subscribedCount });
 }
 
 // edit video

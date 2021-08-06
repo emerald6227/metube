@@ -1,6 +1,7 @@
 import User from "../models/User";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
+import { checkSubscribed, getSubscribedCount } from "./subscribeController";
 
 // Join
 export const getJoin = (req, res) => res.render("users/join", { pageTitle: "Join" });
@@ -223,9 +224,13 @@ export const postChangePassword = async (req, res) => {
 
 // user profile
 export const seeProfile = async (req, res) => {
-    const { id } = req.params;
+    // const { id } = req.params;
+    const { 
+        params: { id },
+        session: { user }
+    } = req;
     // const user = await User.findById(id).populate("videos");
-    const user = await User.findById(id).populate({
+    const ownerUser = await User.findById(id).populate({
         path: "videos",
         populate: {
             path: "owner",
@@ -233,11 +238,18 @@ export const seeProfile = async (req, res) => {
         }
     });
     
-    if (!user) {
+    if (!ownerUser) {
         return res.status(404).render("404", { pageTitle: "User not found."});
     }
 
-    return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , user });
+    let subscribed = null;
+    let subscribedCount = 0;
+    if (user) {
+        subscribed = await checkSubscribed(id, user._id);
+        subscribedCount = await getSubscribedCount(id);
+    }
+
+    return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , ownerUser, subscribed, subscribedCount });
 };
 
 // user Delete

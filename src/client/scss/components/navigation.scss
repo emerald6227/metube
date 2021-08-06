@@ -30,7 +30,65 @@
       font-weight: 600;
     }
 
+    .nav-menu__notification {
+      padding: 0.5rem 1.25rem 1.25rem 1.875rem;
+      width: 14.375rem;
+      border-bottom: 0.0625rem solid rgba(55, 55, 55, 1);
+      box-sizing: border-box;
+
+      span {
+        color: $youtubeGray;
+        font-weight: 500;
+      }
+    }
+
     .nav-menu__item {
+      display: flex;
+      align-items: center;
+      height: 2.5rem;
+      padding: 0 1.875rem;
+
+      i {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.9375rem;
+        margin-top: 0.313rem;
+        font-size: 1.25rem;
+        color: $navIcon;
+        text-align: center;
+      }
+
+      .subscribe-avatar {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.9375rem;
+        font-size: 1.25rem;
+        border-radius: 50%;
+      }
+
+      span {
+        font-size: 0.875rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    .nav-menu:last-child {
+      border-bottom: none;
+    }
+
+    .nav-menu__item:first-child {
+      margin-top: 0.625rem;
+    }
+
+    .nav-menu__item:last-child {
+      margin-bottom: 0.625rem;
+    }
+
+    .nav-menu__item--subscribe {
       display: flex;
       align-items: center;
       height: 2.5rem;
@@ -44,27 +102,33 @@
         color: $navIcon;
       }
 
+      .subscribe-avatar {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.9375rem;
+        font-size: 1.25rem;
+        border-radius: 50%;
+      }
+
       span {
-        height: 1.125rem;
         font-size: 0.875rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
       }
     }
 
-    .nav-menu__item:first-child {
-      margin-top: 0.625rem;
-    }
-
-    .nav-menu__item:last-child {
+    .subscribe-wrapper:last-child {
+      display: block;
       margin-bottom: 0.625rem;
     }
-  }
 
-  .nav-menu__item:hover {
-    background-color: #303030;
-  }
-
-  .nav-menu:last-child {
-    border-bottom: none;
+    .nav-menu__item:hover,
+    .nav-menu__item--subscribe:hover {
+      background-color: #303030;
+    }
   }
 }
 

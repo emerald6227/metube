@@ -29,3 +29,26 @@
   height: 150px;
   border-radius: 50%;
 }
+
+// subscribe
+.subscribe-btn {
+  height: 2.5rem;
+  width: 4.375rem !important;
+  background-color: $youtubeRed !important;
+  color: white !important;
+  font-size: 0.875rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.unsubscribe-btn {
+  height: 2.5rem;
+  width: 4.375rem !important;
+  background-color: #303030 !important;
+  color: white !important;
+  font-size: 0.875rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  text-align: center;
+}

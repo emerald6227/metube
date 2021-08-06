@@ -18,10 +18,15 @@ div#nav-box
             span 시청기록
     if !loggedIn
         div.nav-menu__login
-            span 로그인하면 동영상에 댓글을 달고 반응할 수 있습니다.
+            span 로그인하면 동영상에 댓글을 달거나 구독할 수 있습니다.
             a.login-box(href="/login")
                 i.fas.fa-user-circle
                 span 로그인
+    div.nav-menu
+        span.nav-menu__title 구독
+        if !loggedIn
+            div.nav-menu__notification
+                span 로그인하면 구독할 수 있습니다.
     div.nav-menu
         span.nav-menu__title RavenTube 더보기
         div.nav-menu__item

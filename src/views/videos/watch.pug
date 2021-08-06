@@ -46,13 +46,21 @@ block content
                         else
                             a(href=`/users/${video.owner._id}`)
                                 img.owner-info__avatar(src=`/${video.owner.avatarUrl}`)
-                        a(href=`/users/${video.owner._id}`) #{video.owner.name}
+                        div.video__owner-text-info
+                            a(href=`/users/${video.owner._id}`) #{video.owner.name}
+                            span.subscriber-count 구독자 #{subscribedCount}명
                     div#video_owner-primary-info--right
                         if String(loggedInUser._id) === String(video.owner._id)
                             a(href=`${video.id}/edit`)
                                 button 동영상 수정
                             a(href=`${video.id}/delete`)
                                 button 동영상 삭제
+                        if loggedIn
+                            if String(loggedInUser._id) !== String(video.owner._id)
+                                if subscribed
+                                    button.unsubscribe-btn(data-id=video.owner._id) 구독 취소
+                                else
+                                    button.subscribe-btn(data-id=video.owner._id) 구독
                 div#video_owner-info-description
                     span=video.description
 
@@ -115,4 +123,5 @@ block scripts
     script(src="/static/js/previewVideo.js")
     script(src="/static/js/recommendedVideo.js")
     if loggedIn 
+        script(src="/static/js/subscribe.js")
         script(src="/static/js/commentSection.js")
