@@ -238,17 +238,23 @@ export const seeProfile = async (req, res) => {
         }
     });
 
-    console.log("오너유저네임", ownerUser.name);
-    
     if (!ownerUser) {
         return res.status(404).render("404", { pageTitle: "User not found."});
     }
+    console.log("ownerUser: ", ownerUser);
 
     let subscribed = null;
     let subscribedCount = 0;
     if (user) {
-        subscribed = await checkSubscribed(id, user._id);
-        subscribedCount = await getSubscribedCount(id);
+        try {
+            subscribed = await checkSubscribed(id, user._id);
+            subscribedCount = await getSubscribedCount(id);
+
+            console.log("subscribed: ", subscribed);
+            console.log("subscribedCount: ", subscribedCount);
+        } catch (error) {
+            console.error("seeProfile: ", error);
+        }
     }
 
     return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , ownerUser, subscribed, subscribedCount });
