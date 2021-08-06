@@ -244,17 +244,17 @@ export const seeProfile = async (req, res) => {
 
     let subscribed = false;
     let subscribedCount = 0;
-    // if (user) {
-    //     try {
-    //         subscribed = await checkSubscribed(id, user._id);
-    //         subscribedCount = await getSubscribedCount(id);
+    if (user) {
+        try {
+            subscribed = await checkSubscribed(id, user._id);
+            subscribedCount = await getSubscribedCount(id);
 
-    //         console.log("subscribed: ", subscribed);
-    //         console.log("subscribedCount: ", subscribedCount);
-    //     } catch (error) {
-    //         console.error("seeProfile: ", error);
-    //     }
-    // }
+            console.log("subscribed: ", subscribed);
+            console.log("subscribedCount: ", subscribedCount);
+        } catch (error) {
+            console.error("seeProfile: ", error);
+        }
+    }
 
     return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , ownerUser, subscribed, subscribedCount });
 };
