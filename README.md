@@ -1,24 +1,55 @@
-# METUBE
+# RavenTube - Youtube Clone Project
 
-Cloning Youtube Project
+## RavenTube
 
----
+- Link:​ https://raventube.herokuapp.com/  
+  <br/>
 
-### - Route Info -
+## 😺 프로젝트 소개 😺
 
-/ -> Home  
-/join -> Join  
-/login -> Login  
-/search -> Search
+- RavenTube는 2021.05.24 ~ 2021.07.04 (약 6주)의 기간동안 유튜브를 클론코딩한 프로젝트입니다. 저는 약 3주의 시간을 더 투자해서 기본적인 클론코딩에 더해 추가 기능들을 구현했습니다.  
+  <br/>
 
-/users/:id -> See user  
-/users/logout -> Log out  
-/users/edit -> Edit My Profile  
-/users/delete -> Delete user
+## 🖥 RavenTube 이용방법 🖥
 
-/videos/:id -> See Video  
-/videos/:id/edit -> Edit Video  
-/videos/:id/delete -> Delete Video  
-/videos/upload -> Upload Video
+1. 메인 페이지 : 동영상들을 감상할 수 있고, 왼쪽 메뉴를 통해서 구독한 채널로 이동이 가능합니다.
+2. 회원가입 : 회원가입은 GitHub 계정으로도 가능합니다.
+3. 동영상 업로드 : '동영상 녹화' 기능을 이용하면 웹캡을 통해서 녹화가 가능합니다.
+4. 비밀번호 변경 : 프로필 수정 하단에 링크가 위치되어 있습니다.
+5. 동영상 페이지 : 하단에는 구독 및 댓글 기능이 있고, 우측에는 최신 영상이 표시됩니다.
+6. 동영상 단축키
+   - 'F' : 전체화면
+   - 'Space' : 동영상 재생 및 정지
+7. 검색 : 상단의 검색창으로 동영상을 검색할 수 있습니다.
+8. 구독 : 해당 유저의 채널페이지 혹은 동영상 페이지에서 구독 및 구독취소가 가능합니다.  
+   <br/>
 
----
+## 💡 RavenTube 에 사용된 기술 💡
+
+1. 백엔드 : Node.js, Express.js, MongoDB, Mongoose, Babel
+2. 프론트엔드 : Pug, Sass, Webpack, FFmpeg
+3. 배포 : Heroku, AWS S3, GitHub
+4. Node.js 라이브러리 : bcrypt, multer, node-fetch, morgan, moment, dotenv, express-flash 등  
+   </br>
+
+## 👮 저작권 및 사용권 정보 👮‍♂️
+
+- RavenTube는 개인의 토이 프로젝트이므로 학습용으로만 참고하시길 바랍니다.  
+  </br>
+
+## 🧑🏻‍💻 RavenTube 후기 🧑🏻‍💻
+
+- 이전에 진행했던 '카카오톡 클론코딩'이나 'TODO List 웹 페이지'와는 다르게 풀 스택으로 개발할 수 있어서 매우 갚진 경험이었고, 재미도 있었다.
+  이전에도 웹 풀스택 개발을 해본적은 있지만, 예전에는 `Node.js`의 패키지 파일 내용도 제대로 모른채 개발을 했다면, 이번에는 제대로 이해하고 개발을해서 매우 뿌듯했다.
+  마지막으로 세세한 후기는 크게 세 가지로 나누어서 진행하려고한다.
+
+1. 백엔드는 `Node.js`의 기본 패키지 내용도 무엇인지 알게되었고, `npm`을 통해서 여러가지 라이브러리를 import 할 수 있다는 것이 얼마나 강력한 기능인지 깨닫게되었다. 또, `express` 프레임워크를 사용해서 라우터를 활용할 수 있어서 기뻤고, 무엇보다 라우트에 `:id`를 넣어줌으로써 고유한 주소를 만들어 내는 것이 매우 간편했다. 이렇게 가능하게 해준 것은 `MongoDB`가 튜플을 하나 생성할 때마다 고유한 `_id`를 생성해주었기 때문에 더욱 쉬웠던 것 같다. ( `Mongoose`도 `populate`와 같은 기능이 있어서 매우 편리했다. )
+2. 프론트엔드에서는 `Pug`와 `Sass`를 사용했는데, 확실히 코드량이 간략해지는 효과를 볼 수 있었다. 무엇보다 `Express Session`에 있는 데이터를 `Locals`에 담아서 `pug`에서 직접적으로 사용할 수 있는 점이 편리했다. 힘들었던 점은 반응형으로 구현하려고 노력을 많이하다보니, 구현해야할 것이 생각보다 많았다는 것이다. 그렇지만 이번 프로젝트에서 가장 시간 투자도 많이했고 결과물이 뿌듯한 부분이다.
+3. 배포는 `Heroku`를 사용했고, 파일의 저장은 `AWS S3`, `MongoDB Atlas`를 이용했다. 업로드 시에는 `multer` 라이브러리를 사용해서 편리하게 업로드가 가능했다.  
+   </br>
+
+## 🥺 RavenTube 아쉬웠던 점 🥺
+
+- 프론트엔드에서 상태 변수 저장을 하려면 매우 복잡하다는 것을 깨달았다. 사이드 메뉴를 헤더의 버튼으로 active/inactive 하도록 구현하고 싶었으나 시간이 너무 오래걸릴 것 같고 복잡하여 내려놓았다... 다음번에 `React`를 학습할 예정인데, 이 때 `Redux` 를 적극적으로 꼭 활용해보고 싶어졌다.
+
+- 모든 페이지의 프론트에서 `fetch`를 사용해서 데이터를 요청하는 방식으로 하고 싶었지만, 아쉽게도 해당 클론 프로젝트는 기술을 학습하면서 진행하다보니, 어떤 페이지는 `express`에서 바로 렌더링을 하도록 되어있다. 다음 번에 `React`로 웹페이지를 개발할 때는 꼭 모든 페이지에서 `fetch`나 `axios`등을 활용해보고싶다.
