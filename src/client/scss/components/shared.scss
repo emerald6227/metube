@@ -3,18 +3,6 @@
   font-size: 18px;
 }
 
-.video_grid {
-  display: grid;
-  gap: 50px;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.video-grid {
-  display: grid;
-  gap: 50px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .auth-switch {
   text-align: center;
   margin-top: 40px;
