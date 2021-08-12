@@ -14,8 +14,6 @@ block content
                     img(src=`/${ownerUser.avatarUrl}`).avatar
             if ownerUser.name !== undefined 
                 h3 #{ownerUser.name}
-            else
-                span #{ownerUser}
             span.subscriber-count 구독자 #{subscribedCount}명
         div.profile__additional-info
             if loggedIn
@@ -25,7 +23,7 @@ block content
                     else
                         button.subscribe-btn(data-id=ownerUser._id) 구독
         div.video-grid.video-grid--small
-            each video in ownerUser.videos 
+            each video in ownerUser.videos.reverse()
                 +video(video)
             else
                 span.empty__message 업로드한 동영상이 없습니다

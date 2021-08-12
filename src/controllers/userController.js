@@ -253,11 +253,11 @@ export const seeProfile = async (req, res) => {
     if (user) {
         try {
             subscribed = await checkSubscribed(id, user._id);
-            subscribedCount = await getSubscribedCount(id);
         } catch (error) {
             console.error(error);
         }
     }
+    subscribedCount = await getSubscribedCount(id);
 
     return res.render("users/profile", { pageTitle: `${ownerUser.name}의 Profile` , ownerUser, subscribed, subscribedCount });
 };
