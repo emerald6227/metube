@@ -12,7 +12,10 @@ block content
                         img(src=`${ownerUser.avatarUrl}`).avatar
                 else
                     img(src=`/${ownerUser.avatarUrl}`).avatar
-            h3=ownerUser.name
+            if ownerUser.name !== undefined 
+                h3 #{ownerUser.name}
+            else
+                span #{ownerUser}
             span.subscriber-count 구독자 #{subscribedCount}명
         div.profile__additional-info
             if loggedIn

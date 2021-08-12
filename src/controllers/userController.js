@@ -259,7 +259,7 @@ export const seeProfile = async (req, res) => {
         }
     }
 
-    return res.render("users/profile", { pageTitle: `${user.name}의 Profile` , ownerUser, subscribed, subscribedCount });
+    return res.render("users/profile", { pageTitle: `${ownerUser.name}의 Profile` , ownerUser, subscribed, subscribedCount });
 };
 
 // user Delete
