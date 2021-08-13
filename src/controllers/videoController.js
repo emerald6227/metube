@@ -40,8 +40,8 @@ export const watch = async (req, res) => {
     let subscribedCount = 0;
     if (user) {
         subscribed = await checkSubscribed(video.owner._id, user._id);
-        subscribedCount = await getSubscribedCount(video.owner._id);
     }
+    subscribedCount = await getSubscribedCount(video.owner._id);
 
     return res.render("videos/watch", { pageTitle: video.title, video, recommendedVideos, subscribed, subscribedCount });
 }
