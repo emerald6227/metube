@@ -188,7 +188,7 @@ const init = async () => {
     handlePlayClick();
 }
 
-init();
+window.addEventListener("load", init);
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
