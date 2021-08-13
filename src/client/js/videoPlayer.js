@@ -14,6 +14,8 @@ const fullScreenBtnIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
+let volumeTimer = null;
+
 // Comment
 const addCommentForm = document.querySelector(".video__add-comment--form");
 let textarea = "";
@@ -53,6 +55,17 @@ const handlePlayClick = (event) => {
     playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
+const setVolumeCookie = () => {
+    if (volumeTimer) {
+        clearTimeout(volumeTimer);
+    }
+
+    volumeTimer = setTimeout(() => {
+        setPermanentCookie("currentVolume", volumeRange.value, 365 * 1000);
+        }, 200
+    );
+}
+
 const handleMute = (event) => {
     if (video.muted) {
         video.muted = false;
@@ -62,7 +75,7 @@ const handleMute = (event) => {
     muteBtnIcon.classList = video.muted ?  "fas fa-volume-mute" : "fas fa-volume-up";
     volumeRange.value = video.muted ? 0 : volumeValue;
 
-    setPermanentCookie("currentVolume", volumeRange.value, 365 * 1000);
+    setVolumeCookie();
 };
 
 const handleVolumeChange = (event) => {
@@ -78,7 +91,7 @@ const handleVolumeChange = (event) => {
     volumeValue = value;
     video.volume = value;
 
-    setPermanentCookie("currentVolume", volumeRange.value, 365 * 1000);
+    setVolumeCookie();
 }
 
 const handleLoadedMetadata = () => {
@@ -158,37 +171,6 @@ const handleControlsMouseLeave = () => {
 const handleVideoEnded = () => {
     const { id } = videoContainer.dataset;
     fetch(`/api/videos/${id}/view`, { method: "POST" });
-}
-
-// volume api
-const getVolume = async () => {
-    const response = await fetch(`/api/video-volume`, {
-        method: "GET"
-    });
-
-    if (response.status === 200) {
-        const { volume } = await response.json();
-        return volume;
-    } else {
-        console.error("getVolume fail", response);
-        return 1;
-    }
-}
-
-const updateVolume = async () => {
-    const volume = volumeRange.value;
-
-    const response = await fetch(`/api/video-volume`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ volume })
-    });
-
-    if (response.status !== 200) {
-        console.error("updateVolume fail", response);
-    }
 }
 
 const init = async () => {
