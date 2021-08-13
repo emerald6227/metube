@@ -12,7 +12,8 @@ module.exports = {
         previewVideo: BASE_JS + "previewVideo.js",
         sideNavigation: BASE_JS + "sideNavigation.js",
         recommendedVideo: BASE_JS + "recommendedVideo.js",
-        subscribe: BASE_JS + "subscribe.js"
+        subscribe: BASE_JS + "subscribe.js",
+        cookie: BASE_JS + "cookie.js"
     },
     // mode: "development",
     // watch: true,

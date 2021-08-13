@@ -1,3 +1,5 @@
+import cookie, { getCookie, setPermanentCookie } from "./cookie.js";
+
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
 const playBtnIcon = playBtn.querySelector("i");
@@ -59,6 +61,8 @@ const handleMute = (event) => {
     }
     muteBtnIcon.classList = video.muted ?  "fas fa-volume-mute" : "fas fa-volume-up";
     volumeRange.value = video.muted ? 0 : volumeValue;
+
+    setPermanentCookie("currentVolume", volumeRange.value, 365 * 1000);
 };
 
 const handleVolumeChange = (event) => {
@@ -73,6 +77,8 @@ const handleVolumeChange = (event) => {
 
     volumeValue = value;
     video.volume = value;
+
+    setPermanentCookie("currentVolume", volumeRange.value, 365 * 1000);
 }
 
 const handleLoadedMetadata = () => {
@@ -95,7 +101,7 @@ const handleTimeUpdate = () => {
 };
 
 const handleTimelineChange = (event) => {
-    const { target: { value }} = event;
+    const { target: { value } } = event;
     video.currentTime = value;
 };
 
@@ -154,14 +160,56 @@ const handleVideoEnded = () => {
     fetch(`/api/videos/${id}/view`, { method: "POST" });
 }
 
-const init = () => {
+// volume api
+const getVolume = async () => {
+    const response = await fetch(`/api/video-volume`, {
+        method: "GET"
+    });
+
+    if (response.status === 200) {
+        const { volume } = await response.json();
+        return volume;
+    } else {
+        console.error("getVolume fail", response);
+        return 1;
+    }
+}
+
+const updateVolume = async () => {
+    const volume = volumeRange.value;
+
+    const response = await fetch(`/api/video-volume`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ volume })
+    });
+
+    if (response.status !== 200) {
+        console.error("updateVolume fail", response);
+    }
+}
+
+const init = async () => {
+    const currentVolume = await getCookie("currentVolume");
+    if (currentVolume) {
+        volumeRange.value = currentVolume;
+        video.volume = currentVolume;
+
+        if (currentVolume === "0") {
+            video.muted = true;
+            muteBtnIcon.classList = "fas fa-volume-mute";
+        }
+    }
+
     handlePlayClick();
 }
 
 init();
 
 playBtn.addEventListener("click", handlePlayClick);
-muteBtn.addEventListener("click",handleMute);
+muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
 timeLine.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
