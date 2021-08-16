@@ -6,9 +6,9 @@ block content
         div#watch-primary__container
             div#videoContainer(data-id=video._id)
                 if isHeroku
-                    video(src=`${video.fileUrl}` playsinline)#video
+                    video(src=`${video.fileUrl}`, playsinline)#video
                 else
-                    video(src=`/${video.fileUrl}` playsinline)#video
+                    video(src=`/${video.fileUrl}`, playsinline)#video
                 div#videoControls
                     div#videoDuration
                         input(type="range", min="0", step="1", value="0")#timeline
