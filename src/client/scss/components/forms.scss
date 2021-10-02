@@ -48,7 +48,7 @@ input[type="submit"],
   color: rgba($color: $aTagBlue, $alpha: 1) !important;
   font-weight: 700 !important;
   text-align: center !important;
-  cursor: pointer;
+  cursor: pointer !important;
   display: block;
   border: none;
 
@@ -59,4 +59,8 @@ input[type="submit"],
     opacity: 0.5;
     pointer-events: none;
   }
+}
+
+input[type="file"] {
+  cursor: pointer !important;
 }
